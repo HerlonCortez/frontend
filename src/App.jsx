@@ -7,7 +7,7 @@ function App() {
   const [file, setFile] = useState(null);
   
   const fetchTransactions = async () =>{
-    const response = await axios.get("http://localhost:8080/transacoes");
+    const response = await axios.get(process.env.VITE_REACT_APP_FETCH_URL);
     setTransactios(response.data);
     console.log(response.data);
   }
@@ -19,7 +19,7 @@ function App() {
   const uploadFile = async () => {
     const formData = new FormData();
     formData.append('file', file);
-    axios.post("http://localhost:8080/cnab/upload", formData, {
+    axios.post(process.env.VITE_REACT_APP_UPLOAD_URL, formData, {
       Headers:{
         'Content-Type': 'multipart/form-data'
       }
